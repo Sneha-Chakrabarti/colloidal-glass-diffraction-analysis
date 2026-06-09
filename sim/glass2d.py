@@ -22,9 +22,8 @@ import numpy as np
 from scipy.spatial import cKDTree
 
 
-# ---------------------------------------------------------------------------
 # WCA potential
-# ---------------------------------------------------------------------------
+
 
 R_CUT_FACTOR = 2.0 ** (1.0 / 6.0)   # WCA cutoff: r_cut = 2^(1/6) * sigma
 
@@ -115,11 +114,7 @@ def minimize_energy(positions, box_size, sigma=1.0, eps=1.0,
             lr *= 0.5
 
     return pos, energies
-
-
-# ---------------------------------------------------------------------------
 # Glass generation
-# ---------------------------------------------------------------------------
 
 def generate_2d_glass(N=200, packing_fraction=0.82, box_size=None,
                        seed=42, minimize=True, n_min_steps=300):
@@ -157,10 +152,7 @@ def generate_2d_glass(N=200, packing_fraction=0.82, box_size=None,
 
     return positions, sigma, box_size
 
-
-# ---------------------------------------------------------------------------
 # Neighbor list
-# ---------------------------------------------------------------------------
 
 def get_nearest_neighbors(positions, box_size, r_cut=None):
     """
@@ -206,10 +198,7 @@ def get_nearest_neighbors(positions, box_size, r_cut=None):
 
     return neighbor_list, nn_distances
 
-
-# ---------------------------------------------------------------------------
 # Athermal quasistatic shear
-# ---------------------------------------------------------------------------
 
 def apply_affine_shear(positions, box_size, gamma):
     """
@@ -291,9 +280,7 @@ def run_quasistatic_shear(positions, box_size, sigma=1.0,
     return trajectory
 
 
-# ---------------------------------------------------------------------------
 # Local centrosymmetry
-# ---------------------------------------------------------------------------
 
 def local_centrosymmetry_2d(positions, neighbor_list, box_size):
     """
@@ -337,10 +324,7 @@ def local_centrosymmetry_2d(positions, neighbor_list, box_size):
 
     return np.clip(F_IS, 0, 1)
 
-
-# ---------------------------------------------------------------------------
 # Internal helpers
-# ---------------------------------------------------------------------------
 
 def _periodic_images(positions, box_size):
     """Stack 3x3 periodic images: (9N, 2)."""
